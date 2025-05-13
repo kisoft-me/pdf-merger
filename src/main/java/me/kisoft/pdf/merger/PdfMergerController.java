@@ -33,7 +33,7 @@ public class PdfMergerController {
             InputStream mergedFile = mergerService.mergeFiles(files);
             ctx.result(mergedFile);
             ctx.contentType(ContentType.APPLICATION_PDF);
-            ctx.header("Content-Disposition", "attachment; filename=merged.pdf");
+            ctx.header("Content-Disposition", "attachment; filename=\"merged.pdf\"");
         } catch (IOException ex) {
             throw new InternalServerErrorResponse(ex.getMessage());
         }
