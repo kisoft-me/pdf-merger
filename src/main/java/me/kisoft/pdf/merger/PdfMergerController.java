@@ -3,6 +3,7 @@ package me.kisoft.pdf.merger;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.ContentType;
 import io.javalin.http.Context;
+import static io.javalin.http.Header.CONTENT_DISPOSITION;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.http.UploadedFile;
 import java.io.ByteArrayInputStream;
@@ -33,7 +34,7 @@ public class PdfMergerController {
             InputStream mergedFile = mergerService.mergeFiles(files);
             ctx.result(mergedFile);
             ctx.contentType(ContentType.APPLICATION_PDF);
-            ctx.header("Content-Disposition", "attachment; filename=\"merged.pdf\"");
+            ctx.header(CONTENT_DISPOSITION, "attachment; filename=\"merged.pdf\"");
         } catch (IOException ex) {
             throw new InternalServerErrorResponse(ex.getMessage());
         }
